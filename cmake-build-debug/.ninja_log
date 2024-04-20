@@ -1,0 +1,4 @@
+# ninja log v5
+1	149	7353196819277021	build.ninja	7ce0b1208d7dc0bd
+1	474	7353196824267540	CMakeFiles/algo_CPP.dir/main.cpp.obj	9165355f5b9be094
+476	578	7353196825278636	algo_CPP.exe	48d322681fc698e2
