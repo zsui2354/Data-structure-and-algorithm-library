@@ -36,6 +36,26 @@ public:
         }
     }
 
+    void remove(int position){
+        if (head == nullptr){
+            return;
+        }else if (position == 0){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            return;
+        }else{
+            Node* prev =head;
+            for (int i = 0; i < position-1 && head->next != nullptr; i++) {
+                prev=prev->next;
+            }
+            if (prev->next != nullptr){
+                Node* temp = prev->next;
+                prev->next = temp->next;
+                delete temp;
+            }
+        }
+    }
 
     void print_List(){
         Node* temp = head;
@@ -83,6 +103,19 @@ public:
         }
         delete temp->next;
         temp->next = nullptr;   //因为倒数第一的节点被删除，第二的需要确保末尾节点是nullptr才能保证链表正确
+    }
+
+    void pop_front(){
+        if (head == nullptr){
+            return;
+        }else if(head->next != nullptr){
+            Node* temp = head->next;
+            delete head;
+            head = temp;
+        }else{
+            delete head;
+            head = nullptr;
+        }
     }
 };
 

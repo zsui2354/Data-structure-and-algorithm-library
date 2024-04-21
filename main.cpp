@@ -11,7 +11,8 @@ int main(){
     fc.insert(99,2);
     fc.push_back(66);
     fc.push_front(333);
-
+    fc.pop_front();
+    fc.remove(3);
 
     fc.print_List();
 }
