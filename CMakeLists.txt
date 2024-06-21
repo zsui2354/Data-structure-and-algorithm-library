@@ -4,4 +4,6 @@ project(algo_CPP)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(algo_CPP main.cpp
-        LinkedList.h)
+        LinkedList.h
+        Doubly_LinkedList.h
+)

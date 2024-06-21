@@ -1,126 +1,166 @@
+
 //
-// Created by Hasee on 2024/4/20.
+// Created by zsui2354 on 2024/4/20.
 //
 
 #ifndef ALGO_CPP_LINKEDLIST_H
 #define ALGO_CPP_LINKEDLIST_H
 
 #include <iostream>
-#include <list>
 
-class Node{
-public:
-    int val;
-    Node* next;
-
-    Node(int x):val(x),next(nullptr){}
+template<typename T>
+struct ListNode {
+    T value;
+    ListNode* next;
+    ListNode(T val): value(val), next(nullptr) {}
 };
 
-class LinkedList{
+template<typename T>
+class LinkedList {
+private:
+    ListNode<T>* head;
 public:
-    Node*head;
-    LinkedList():head(nullptr){};
+    LinkedList(): head(nullptr) {}
 
-    void insert(int val, int position){
-        Node* newNode = new Node(val);
-        if (position == 0 || head == nullptr){
-            newNode->next=head;
-            head->next=newNode;
-        }else{
-            Node *prev = head;
-            for (int i = 0; i !=position-1 && prev->next != nullptr; i++) {
-                prev=prev->next;
-            }
-            newNode->next=prev->next;
-            prev->next=newNode;
-        }
+    void insert(T val, int position);
+
+    void remove(int position);
+
+    void print_LinkedList() const;
+
+    void push_back(T val);
+
+    void push_front(T val);
+
+    void pop_back();
+
+    void pop_front();
+
+    ~LinkedList();
+};
+
+
+
+template<typename T>
+void LinkedList<T>::insert(T val, int position) {
+    ListNode<T>* newNode = new ListNode<T>(val);
+    if (position == 0) {
+        newNode->next = head;
+        head = newNode;
+        return;
     }
+    ListNode<T>* current = head;
+    for (int i = 0; i < position - 1 && current != nullptr; ++i) {
+        current = current->next;
+    }
+    if (current != nullptr) {
+        newNode->next = current->next;
+        current->next = newNode;
+    }
+}
 
-    void remove(int position){
-        if (head == nullptr){
-            return;
-        }else if (position == 0){
-            Node* temp = head;
-            head = head->next;
+template<typename T>
+void LinkedList<T>::remove(int position) {
+    if (head == nullptr) {
+        return;
+    }
+    if (position == 0) {
+        ListNode<T>* temp = head;
+        head = head->next;
+        delete temp;
+    } else {
+        ListNode<T>* prev = head;
+        for (int i = 0; i < position - 1 && head->next != nullptr; ++i) {
+            prev = prev->next;
+        }
+        if (prev->next != nullptr) {
+            ListNode<T>* temp = prev->next;
+            prev->next = temp->next;
             delete temp;
-            return;
-        }else{
-            Node* prev =head;
-            for (int i = 0; i < position-1 && head->next != nullptr; i++) {
-                prev=prev->next;
-            }
-            if (prev->next != nullptr){
-                Node* temp = prev->next;
-                prev->next = temp->next;
-                delete temp;
-            }
         }
     }
+}
 
-    void print_List(){
-        Node* temp = head;
-        while(temp != nullptr){
-            std::cout<<temp->val<<",";
-            temp=temp->next;
-        }
+template<typename T>
+void LinkedList<T>::print_LinkedList() const {
+    ListNode<T>* current = head;
+    while (current != nullptr) {
+        std::cout << current->value << ", ";
+        current = current->next;
     }
+    std::cout << std::endl;
+}
 
-    void push_back(int val){
-        Node* newNode = new Node(val);
-        if (head == nullptr){
-            head = newNode;
-        }else{
-            Node* temp = head;
-            while(temp->next != nullptr){
-                temp = temp->next;
-            }
-            temp->next = newNode;   //当前temp指针遍历完已经指向最后的节点了， 将newNode也指向这个节点就完成了增加节点在末尾
-
-        }
+template<typename T>
+void LinkedList<T>::push_back(T val) {
+    ListNode<T>* newNode = new ListNode<T>(val);
+    if (head == nullptr) {
+        head = newNode;
+        return;
     }
-
-    void push_front(int val){
-        Node* newNode = new Node(val);
-        if (head == nullptr){
-            head = newNode; //设置 newNode 为新的头节点
-        }else{
-            newNode->next = head;
-            head = newNode; //设置 newNode 为新的头节点
-        }
+    ListNode<T>* current = head;
+    while (current->next != nullptr) {
+        current = current->next;
     }
+    current->next = newNode;
+}
 
-    void pop_back(){
-        if (head == nullptr){
-            return;
-        }else if(head->next==nullptr){
-            delete head;
-            head == nullptr;
-            return;
-        }
-        Node* temp=head;
-        while(temp->next->next != nullptr){
-            temp=temp->next;
-        }
-        delete temp->next;
-        temp->next = nullptr;   //因为倒数第一的节点被删除，第二的需要确保末尾节点是nullptr才能保证链表正确
+template<typename T>
+void LinkedList<T>::push_front(T val) {
+    ListNode<T>* newNode = new ListNode<T>(val);
+    if (head == nullptr) {
+        head = newNode;
+        return;
     }
+    newNode->next = head;
+    head = newNode;
+}
 
-    void pop_front(){
-        if (head == nullptr){
-            return;
-        }else if(head->next != nullptr){
-            Node* temp = head->next;
-            delete head;
-            head = temp;
-        }else{
-            delete head;
-            head = nullptr;
-        }
+template<typename T>
+void LinkedList<T>::pop_back() {
+    if (head == nullptr) {
+        return;
+    } else if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
     }
-};
+    if (head->next != nullptr) {
+        ListNode<T>* current = head;
+        while (current->next->next != nullptr) {
+            current = current->next;
+        }
+        delete current->next;
+        current->next = nullptr;
+    }
+}
 
+template<typename T>
+void LinkedList<T>::pop_front() {
+    if (head == nullptr) {
+        return;
+    } else if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    }
+    ListNode<T>* current = head->next;
+    delete head;
+    head = current;
+}
 
-
-
+template<typename T>
+LinkedList<T>::~LinkedList() {
+    ListNode<T>* current = head;
+    while (current) {
+        ListNode<T>* temp = current;
+        current = current->next;
+        delete temp;
+    }
+    head = nullptr;
+}
 
 #endif //ALGO_CPP_LINKEDLIST_H
+
+
+
