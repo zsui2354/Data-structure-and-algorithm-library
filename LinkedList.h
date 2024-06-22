@@ -36,8 +36,21 @@ public:
 
     void pop_front();
 
+    int Size();
+
+    bool find_Generics(T val);
+
+    int find_Index(T val);
+
+    void ChangeNode_value(T val,int position);
+
+   // void Bubble_Sort();
+
     ~LinkedList();
+
+
 };
+
 
 
 
@@ -58,6 +71,7 @@ void LinkedList<T>::insert(T val, int position) {
         current->next = newNode;
     }
 }
+
 
 template<typename T>
 void LinkedList<T>::remove(int position) {
@@ -81,6 +95,7 @@ void LinkedList<T>::remove(int position) {
     }
 }
 
+
 template<typename T>
 void LinkedList<T>::print_LinkedList() const {
     ListNode<T>* current = head;
@@ -90,6 +105,7 @@ void LinkedList<T>::print_LinkedList() const {
     }
     std::cout << std::endl;
 }
+
 
 template<typename T>
 void LinkedList<T>::push_back(T val) {
@@ -149,6 +165,61 @@ void LinkedList<T>::pop_front() {
     head = current;
 }
 
+
+template<typename T>
+int LinkedList<T>::Size(){
+    if (head == nullptr){
+        return 0;
+    }
+    int counter=1;
+    ListNode<T>* current = head;
+    while(current->next != nullptr){
+        current = current->next;
+        counter++;
+    }
+    return counter;
+}
+
+template<typename T>
+bool LinkedList<T>::find_Generics(T val) {
+    ListNode<T>* current = head;
+    while (current != nullptr) {
+        if (current->value == val) {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+
+template<typename T>
+int LinkedList<T>::find_Index(T val) {
+    int counter = 0;
+    ListNode<T>* current = head;
+    while(current->next != nullptr){
+        if (current->value == val){
+            return counter;
+        }
+        current = current->next;
+        counter++;
+    }
+    return -1;
+}
+
+
+template<typename T>
+void LinkedList<T>::ChangeNode_value(T val,int position) {
+    ListNode<T>* current = head;
+    int counter=0;
+    while (counter < position){
+        current = current->next;
+        counter++;
+    }
+    current->value = val;
+}
+
+
 template<typename T>
 LinkedList<T>::~LinkedList() {
     ListNode<T>* current = head;
@@ -159,6 +230,33 @@ LinkedList<T>::~LinkedList() {
     }
     head = nullptr;
 }
+
+
+
+//template<typename T>
+//void LinkedList<T>::Bubble_Sort(){
+//    if (head == nullptr || head->next == nullptr)
+//        return;
+//    else{
+//        ListNode<T>* current = head;
+//        ListNode<T>* current_n = head->next;
+//        for (int i = 0; i < Size(); ++i) {
+//            for (int j = 0; j < i; ++j) {
+//                if (current->value > current_n->value){
+//                    current ->next = current_n->next;
+//                    current_n->next = head;
+//                    if (i==1){
+//                        head = current_n;
+//                    }
+//                    current = current->next;
+//                    current = current_n->next;
+//                }
+//            }
+//        }
+//    }
+//}
+
+
 
 #endif //ALGO_CPP_LINKEDLIST_H
 
