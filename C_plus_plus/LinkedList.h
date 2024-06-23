@@ -22,32 +22,41 @@ private:
 public:
     LinkedList(): head(nullptr) {}
 
-    void insert(T val, int position);
+    void        insert(T val, int position);
 
-    void remove(int position);
+    void        move_node(int Index,int position);
 
-    void print_LinkedList() const;
+    void        remove_Index_node(int position);
 
-    void push_back(T val);
+    void        remove_value_Allnode(T val);
 
-    void push_front(T val);
+    void        print_LinkedList() const;
 
-    void pop_back();
+    void        push_back(T val);
 
-    void pop_front();
+    void        push_front(T val);
 
-    int Size();
+    void        pop_back();
 
-    bool find_Generics(T val);
+    void        pop_front();
 
-    int find_Index(T val);
+    void        ChangeNode_value(T val,int position);
 
-    void ChangeNode_value(T val,int position);
+    void        reverse();
+
+    bool        find_Generics(T val);
+
+    int         Size();
+
+    int         find_Index(T val);
+
+    int         Get_Intermediate_NodeIndex();
+
+    T           Get_Intermediate_NodeValue();
 
    // void Bubble_Sort();
 
     ~LinkedList();
-
 
 };
 
@@ -74,7 +83,32 @@ void LinkedList<T>::insert(T val, int position) {
 
 
 template<typename T>
-void LinkedList<T>::remove(int position) {
+void LinkedList<T>::move_node(int Index, int position) {
+    int counterIndex = Index;
+    int counterPosition = position;
+    ListNode<T>* currentIndex= head;
+    ListNode<T>* currentPosition = head;
+    ListNode<T>* prev_Index = nullptr;
+    ListNode<T>* prev_Position = nullptr;
+    if (Index == 0)
+        head = head->next;
+    for (int i = 0; i < counterIndex; ++i) {
+        prev_Index = currentIndex;
+        currentIndex = currentIndex ->next;
+
+    }
+    for (int i = 0; i < counterPosition; ++i) {
+        prev_Position = currentPosition;
+        currentPosition = currentPosition ->next;
+    }
+    prev_Index->next = currentIndex->next;
+    currentIndex->next = currentPosition;
+    prev_Position->next = currentIndex;
+}
+
+
+template<typename T>
+void LinkedList<T>::remove_Index_node(int position) {
     if (head == nullptr) {
         return;
     }
@@ -91,6 +125,26 @@ void LinkedList<T>::remove(int position) {
             ListNode<T>* temp = prev->next;
             prev->next = temp->next;
             delete temp;
+        }
+    }
+}
+
+
+template<typename T>
+void LinkedList<T>::remove_value_Allnode(T val) {
+    while(head != nullptr && head->value == val){
+        ListNode<T>* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    ListNode<T>* current =head;
+    while(current != nullptr && current->next != nullptr){
+        if (current->next->value == val){
+            ListNode<T>* temp = current->next;
+            current->next = current->next->next;
+            delete temp;
+        }else{
+            current = current->next;
         }
     }
 }
@@ -218,6 +272,41 @@ void LinkedList<T>::ChangeNode_value(T val,int position) {
     }
     current->value = val;
 }
+
+
+template<typename T>
+int LinkedList<T>::Get_Intermediate_NodeIndex() {
+    int value = (int)Size()/2;
+    return value;
+}
+
+
+template<typename T>
+T LinkedList<T>::Get_Intermediate_NodeValue() {
+    int value = (int)Size()/2;
+    ListNode<T>* current = head;
+    for (int i = 0; i < value; ++i) {
+        current = current->next;
+    }
+    return current->value;
+}
+
+
+
+template<typename T>
+void LinkedList<T>::reverse() {
+    ListNode<T>* prev = nullptr;
+    ListNode<T>* current = head;
+    ListNode<T>* next = nullptr;
+    while (current != nullptr) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+}
+
 
 
 template<typename T>
