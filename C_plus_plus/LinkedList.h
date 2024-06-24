@@ -50,6 +50,8 @@ public:
 
     int         find_Index(T val);
 
+    int         Rotate_linkedlists(int Index);
+
     int         Get_Intermediate_NodeIndex();
 
     T           Get_Intermediate_NodeValue();
@@ -271,6 +273,29 @@ void LinkedList<T>::ChangeNode_value(T val,int position) {
         counter++;
     }
     current->value = val;
+}
+
+
+template<typename T>
+int LinkedList<T>::Rotate_linkedlists(int Index) {
+    int Counter;
+    ListNode<T>* temp = head;
+    ListNode<T>* current = head;
+    ListNode<T>* back = head;
+    while (back->next != nullptr){
+        back = back->next;
+    }
+    while(current->next != nullptr){
+        Counter++;
+        current = current->next;
+        if (Counter == Index){
+            head = current->next;
+            current->next = nullptr;
+            back->next = temp;
+        }
+    }
+    current ->next = nullptr;
+    return -1;
 }
 
 

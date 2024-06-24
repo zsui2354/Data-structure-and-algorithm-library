@@ -1,4 +1,4 @@
-# Install script for directory: C:/GitHub_Project/algo_CPP
+# Install script for directory: C:/GitHub_Project/algo_CPP/C_plus_plus
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/GitHub_Project/algo_CPP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/GitHub_Project/algo_CPP/C_plus_plus/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

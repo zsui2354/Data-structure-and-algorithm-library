@@ -2,8 +2,31 @@
 #include "LinkedList.h"
 #include "random"
 
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+
+
 int main() {
-    LinkedList<int> List;
+    LinkedList<int> List ;
+
+
+
+
+
+
 
     List.push_back(12);
     List.push_back(11);
@@ -11,7 +34,6 @@ int main() {
     List.insert(1,1);
     List.push_front(1);
     List.pop_front();
-
     List.push_back(12);
     List.push_back(6);
     List.push_back(88);
@@ -26,21 +48,19 @@ int main() {
     List.push_back((int)rand());
     List.push_back((int)rand());
 
-
-
-
-
-
-
+    List.print_LinkedList();
+    List.Rotate_linkedlists(3);
     List.print_LinkedList();
 
-    //List.remove_value_Allnode(12);
+    List.remove_value_Allnode(12);
     List.move_node(1,9+1);
+    std:: cout<<List.Get_Intermediate_NodeIndex()<<std::endl;
+    std:: cout<<List.Get_Intermediate_NodeValue()<<std::endl;
 
-    List.print_LinkedList();
 
 
-//    std:: cout<<List.Get_Intermediate_NodeIndex()<<std::endl;
-//    std:: cout<<List.Get_Intermediate_NodeValue()<<std::endl;
+
+
+
     return 0;
 }

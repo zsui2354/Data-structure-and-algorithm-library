@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/GitHub_Project/algo_CPP/cmake-build-debug"
+			"value" : "c:/GitHub_Project/algo_CPP/C_plus_plus/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/GitHub_Project/algo_CPP/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/GitHub_Project/algo_CPP/C_plus_plus/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/GitHub_Project/algo_CPP"
+			"value" : "C:/GitHub_Project/algo_CPP/C_plus_plus"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/GitHub_Project/algo_CPP/cmake-build-debug"
+			"value" : "C:/GitHub_Project/algo_CPP/C_plus_plus/cmake-build-debug"
 		},
 		{
 			"name" : "algo_CPP_IS_TOP_LEVEL",
@@ -1299,7 +1299,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/GitHub_Project/algo_CPP"
+			"value" : "C:/GitHub_Project/algo_CPP/C_plus_plus"
 		}
 	],
 	"kind" : "cache",
