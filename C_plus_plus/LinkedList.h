@@ -12,7 +12,7 @@ template<typename T>
 struct ListNode {
     T value;
     ListNode* next;
-    ListNode(T val): value(val), next(nullptr) {}
+    ListNode(T val): value(val), next(nullptr){}
 };
 
 template<typename T>
@@ -27,6 +27,8 @@ public:
     void        move_node(int Index,int position);
 
     void        remove_Index_node(int position);
+
+    void        reverse_remove_Index_node(int position);
 
     void        remove_value_Allnode(T val);
 
@@ -56,12 +58,10 @@ public:
 
     T           Get_Intermediate_NodeValue();
 
-   // void Bubble_Sort();
 
     ~LinkedList();
 
 };
-
 
 
 
@@ -129,6 +129,33 @@ void LinkedList<T>::remove_Index_node(int position) {
             delete temp;
         }
     }
+}
+
+template<typename T>
+void LinkedList<T>::reverse_remove_Index_node(int position) {
+    if (head == nullptr || position <= 0 ){
+        return;
+    }
+    ListNode<T>* current = head;
+    ListNode<T>* temp = nullptr;
+    int counter_length =0;
+    while(current != nullptr ){
+        current = current->next;
+        counter_length ++;
+    }
+    if (position == counter_length){
+        temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+    current = head;
+    for (int i = 1; i < counter_length - position; ++i) {
+        current = current ->next;
+    }
+    temp = current->next;
+    current->next = temp->next;
+    delete temp;
 }
 
 
@@ -310,7 +337,7 @@ template<typename T>
 T LinkedList<T>::Get_Intermediate_NodeValue() {
     int value = (int)Size()/2;
     ListNode<T>* current = head;
-    for (int i = 0; i < value; ++i) {
+    for (int i = 0; i < value-1; ++i) {
         current = current->next;
     }
     return current->value;
@@ -331,7 +358,6 @@ void LinkedList<T>::reverse() {
     }
     head = prev;
 }
-
 
 
 template<typename T>

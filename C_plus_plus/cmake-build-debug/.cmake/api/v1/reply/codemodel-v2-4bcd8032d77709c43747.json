@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/GitHub_Project/algo_CPP/C_plus_plus/cmake-build-debug",
-		"source" : "C:/GitHub_Project/algo_CPP/C_plus_plus"
+		"build" : "C:/GIthub_code/Data-structure-and-algorithm-library/C_plus_plus/cmake-build-debug",
+		"source" : "C:/GIthub_code/Data-structure-and-algorithm-library/C_plus_plus"
 	},
 	"version" : 
 	{
